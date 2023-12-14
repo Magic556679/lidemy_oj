@@ -1,52 +1,77 @@
 <script>
-  let printStart = (n) => {
-    for(let i = 1; n >= i; i++) {
-      computedPrint(n - i , 2 * i -1)
+  const geometricProgression = function (params) {
+    let result = '';
+    if (params.length === 0) {
+      result = 'Yes'
+      console.log(result)
+      return
     }
-    for(let k = 1; n > k; k++) {
-      setTree(n - k ,n - 1)
+    const x = Number(params[0]);
+    const y = params[1].split(' ');
+    if (y.length === 1) {
+      result = 'Yes'
+      console.log(result)
+      return
     }
-  };
-  
-
-  const computedPrint = (space, o) => {
-    let start = ''
-    for(let j = 0; j < space; j++) {
-      start += ' '
-    }
-    for(let i = 0; i < o; i++) {
-      start += '*'
-    }
-    // console.log(start);
-  };
-
-  const setTree = (space, tree) => {
-    let setTree = ''
-    for(let k = 0; k < tree; k++) {
-      setTree += ' '
-    }
-    setTree += '|'
-    // console.log(setTree)
-  };
-
-  // printStart(10);
-
-  const multiplication = (lines) => {
-    let x = Number(lines[0])
-    let y = Number(lines[1])
-    for(let i = 1; i <= x; i++) {
-      for(let j = 1; j <= y; j++) {
-        console.log(`${i}*${j}=${i*j}`)
+    const difference = y[1] / y[0];
+    for (let i = 0; i < x; i++) {
+      if (!y[i + 1]) break
+      if (y[i + 1] / y[i] === difference) {
+        result = 'Yes'
+      } else {
+        result = 'No'
+        break
       }
     }
+    console.log(result)
   }
-  // multiplication([2, 3])
-
-  const narcissisticNumber = (lines) => {
-    let x = Number(lines[0])
-    let y = Number(lines[1])
-    console.log(x, y)
+  // geometricProgression(['3', '3 9 28'])
+  const checkCreditCardNumber = function(params) {
+    let arr = params[0].replace(/-/g, '').split('')
+    let company = arr[0]
+    let lastNumber = arr[arr.length - 1]
+    let eventNumber = []
+    let oddNumber = []
+    for(let i = 0; i < arr.length - 1; i++) {
+      if (arr[i] % 2 === 1) {
+        oddNumber.push(Number(arr[i]))
+      } else {
+        eventNumber.push(Number(arr[i]))
+      }
+    }
+    const odd = oddNumberCompute(oddNumber)
+    const event = eventNumberCompute(eventNumber)
+    const getNumber = odd + event
+    const addNumber = getNumber % 10 === 0 ? 0 : 10 - (getNumber % 10)
+    const checkNumber = function(total, last, companyNumber) {
+      if (total === Number(last) && companyNumber === '5') {
+        console.log('MASTER_CARD')
+      } else if(total === Number(last) && companyNumber === '4') {
+        console.log('VISA')
+      } else {
+        console.log('INVALID')
+      }
+    }
+    checkNumber(addNumber, lastNumber, company)
+  };
+  const oddNumberCompute = function(Numbers) {
+    let total = 0;
+    for(let i = 0; i < Numbers.length; i++) {
+      if (Numbers[i] * 2 >= 10) {
+        total += Numbers[i] * 2 - 9
+      } else {
+        total += Numbers[i] * 2
+      }
+    }
+    return total
   }
-  narcissisticNumber([5, 200])
-  
+  const eventNumberCompute = function(Numbers) {
+    let total = 0;
+    for(let i = 0; i < Numbers.length; i++) {
+      total += Numbers[i] * 1
+    }
+    return total
+  }
+  // checkCreditCardNumber(['5412-3456-7890-1232'])
+  checkCreditCardNumber(['5115125772857237'])
 </script>
