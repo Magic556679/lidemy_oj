@@ -1,77 +1,11 @@
-<script>
-  const geometricProgression = function (params) {
-    let result = '';
-    if (params.length === 0) {
-      result = 'Yes'
-      console.log(result)
-      return
-    }
-    const x = Number(params[0]);
-    const y = params[1].split(' ');
-    if (y.length === 1) {
-      result = 'Yes'
-      console.log(result)
-      return
-    }
-    const difference = y[1] / y[0];
-    for (let i = 0; i < x; i++) {
-      if (!y[i + 1]) break
-      if (y[i + 1] / y[i] === difference) {
-        result = 'Yes'
-      } else {
-        result = 'No'
-        break
-      }
-    }
-    console.log(result)
-  }
-  // geometricProgression(['3', '3 9 28'])
-  const checkCreditCardNumber = function(params) {
-    let arr = params[0].replace(/-/g, '').split('')
-    let company = arr[0]
-    let lastNumber = arr[arr.length - 1]
-    let eventNumber = []
-    let oddNumber = []
-    for(let i = 0; i < arr.length - 1; i++) {
-      if (arr[i] % 2 === 1) {
-        oddNumber.push(Number(arr[i]))
-      } else {
-        eventNumber.push(Number(arr[i]))
-      }
-    }
-    const odd = oddNumberCompute(oddNumber)
-    const event = eventNumberCompute(eventNumber)
-    const getNumber = odd + event
-    const addNumber = getNumber % 10 === 0 ? 0 : 10 - (getNumber % 10)
-    const checkNumber = function(total, last, companyNumber) {
-      if (total === Number(last) && companyNumber === '5') {
-        console.log('MASTER_CARD')
-      } else if(total === Number(last) && companyNumber === '4') {
-        console.log('VISA')
-      } else {
-        console.log('INVALID')
-      }
-    }
-    checkNumber(addNumber, lastNumber, company)
-  };
-  const oddNumberCompute = function(Numbers) {
-    let total = 0;
-    for(let i = 0; i < Numbers.length; i++) {
-      if (Numbers[i] * 2 >= 10) {
-        total += Numbers[i] * 2 - 9
-      } else {
-        total += Numbers[i] * 2
-      }
-    }
-    return total
-  }
-  const eventNumberCompute = function(Numbers) {
-    let total = 0;
-    for(let i = 0; i < Numbers.length; i++) {
-      total += Numbers[i] * 1
-    }
-    return total
-  }
-  // checkCreditCardNumber(['5412-3456-7890-1232'])
-  checkCreditCardNumber(['5115125772857237'])
-</script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./js/unit05/1028.js"></script>
+  </body>
+</html>
