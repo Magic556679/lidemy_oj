@@ -1,4 +1,4 @@
-// 加減乘除
+// 判斷迴文
 // var readline = require('readline')
 
 // var lines = []
